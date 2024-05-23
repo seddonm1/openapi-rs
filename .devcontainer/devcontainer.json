@@ -1,0 +1,28 @@
+{
+    "name": "Rust",
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
+    "service": "app",
+    "workspaceFolder": "/workspaces",
+    "containerEnv": {
+        "CARGO_TARGET_DIR": "/tmp/target"
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "lldb.executable": "/usr/bin/lldb",
+                "files.watcherExclude": {
+                    "**/target/**": true
+                },
+                "rust-analyzer.checkOnSave.command": "clippy"
+            },
+            "extensions": [
+                "rust-lang.rust-analyzer",
+                "vadimcn.vscode-lldb",
+                "tamasfe.even-better-toml",
+                "serayuzgur.crates"
+            ]
+        }
+    }
+}

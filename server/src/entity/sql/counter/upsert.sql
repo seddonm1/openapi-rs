@@ -1,0 +1,1 @@
+INSERT OR REPLACE INTO counter VALUES ($1, $2);
