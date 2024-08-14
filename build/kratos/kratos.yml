@@ -1,0 +1,72 @@
+version: v0.13.0
+
+dsn: memory
+
+serve:
+  public:
+    port: 4433
+    cors:
+      enabled: true
+  admin:
+    port: 4434
+selfservice:
+  default_browser_return_url: http://localhost:4455/
+  flows:
+    settings:
+      privileged_session_max_age: 720h
+
+  methods:
+    password:
+      enabled: true
+    totp:
+      config:
+        issuer: Kratos
+      enabled: true
+    lookup_secret:
+      enabled: true
+    link:
+      enabled: true
+    code:
+      enabled: true
+
+log:
+  level: debug
+  format: json
+  leak_sensitive_values: false
+
+secrets:
+  default:
+    - HDBfngi2/7mdlXFT9JeOrjKouNxGdKtIL4eQkjejzLIqpy28ouP9MzkTpgYfeOGKn1sLLBe+hhUnJaRl3Bo6Qx0sHtHBjGSXA9cYusKfX9WFoB1109oNoh3IH1Bt1ikrGS0tIXzYjaOvNTe7i1kdILeGMxusxbDW1aScriowZSw=
+  cookie:
+    - sU8FBmal9h5K3VA7TvJvT6ALZ6zHrGcbG8SUb7DrSNgTqICxqffb/fWccGmaOmjNXHhfhY0giVcscOg/YwypB7DlxNrLZytfEbkz1Zs2ASLUNg5mBZYn1pBNTuCvTaxomqUC7wB/TzEeBbUQJ7AQ2k9zlzKytb0O94SNr1ax+20=
+  cipher:
+    - 8c243760eed88d6db65646c0d538c629
+
+ciphers:
+  algorithm: xchacha20-poly1305
+
+hashers:
+  algorithm: bcrypt
+  bcrypt:
+    cost: 8
+
+identity:
+  default_schema_id: default
+  schemas:
+    - id: default
+      url: file://./identity.schema.json
+
+session:
+  whoami:
+    tokenizer:
+      templates:
+        jwt:
+          ttl: 1h
+          jwks_url: file://./jwk.eddsa.json
+
+courier:
+  smtp:
+    connection_uri: smtps://test:test@mailslurper:1025/?skip_ssl_verify=true
+
+feature_flags:
+  use_continue_with_transitions: true

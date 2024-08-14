@@ -1,0 +1,12 @@
+[workspace]
+resolver = "2"
+members = [ "crates/entity_macro","crates/server"]
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+debug = false
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
