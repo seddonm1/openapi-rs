@@ -1,4 +1,4 @@
-FROM rust:1.78.0
+FROM rust:1.82.0
 
 # add rust components
 RUN rustup component add rustfmt &&\
